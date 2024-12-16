@@ -33,7 +33,10 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+<<<<<<< HEAD
       'react/proptypes' : 'off',
+=======
+>>>>>>> 1a430ade2824ca7a9e9dc5ecbb5bb9e3a2c57a70
     },
   },
 ]

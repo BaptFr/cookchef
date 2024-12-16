@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -31,4 +32,15 @@ function App() {
     </>
   )
 }
+=======
+
+function App() {
+  return (
+      <div>
+        <h1> Cookchef</h1>
+      </div>
+  )
+}
+
+>>>>>>> 1a430ade2824ca7a9e9dc5ecbb5bb9e3a2c57a70
 export default App
