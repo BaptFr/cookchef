@@ -1,5 +1,5 @@
 import styles from './Recipe.module.scss';
-import recipe from '../images/recette.jpg';
+import recipe from '../assets/images/recette.jpg';
 
 function Recipe() {
 
