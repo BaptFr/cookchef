@@ -5,7 +5,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: var(--text-color);
-    background-color:var(--grey2);
+    background-color:var(--grey-2);
 }
 
 h1,
@@ -27,4 +27,12 @@ ul{
 
 img {
     max-width: 100%;
+}
+
+input {
+    font-family: var(--font-family);
+}
+
+::placeholder {
+    font-family: var (--font-family);
 }

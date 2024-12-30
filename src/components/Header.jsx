@@ -23,7 +23,12 @@ function Header () {
                 onClick={() => setShowMenu(true)}
                 className={`fa-solid fa-bars ${styles.headerXs}`}
                 ></i>
-            {showMenu && <HeaderMenu />}
+            {showMenu &&
+                <>
+                <div onClick={() => setShowMenu(false)} className='calc'></div>
+                <HeaderMenu />
+                </>
+            }
         </header>
     );
 }
