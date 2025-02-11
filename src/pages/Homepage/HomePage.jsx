@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import styles from './Content.module.scss';
-import Recipe from './Recipe';
-import { data } from '../data/recipes';
+import styles from './Homepage.module.scss';
+import Recipe from './components/Recipe/Recipe';
+import { data } from '../../data/recipes';
 
 export function Content () {
     const recipes = data;
-    const [filter, setFitler]= useState('');
+    const [filter, setFitler]= useState(''); 
 
     function handleInput (e) {
         const filter = e.target.value;

@@ -1,6 +1,6 @@
-import  Header  from "./components/Header";
-import  Content  from "./components/Content";
-import  Footer from "./components/Footer";
+import  Header  from "./components/Header/Header";
+import  Content  from "./pages/Homepage/HomePage";
+import  Footer from "./components/Footer/Footer";
 import styles from './App.module.scss';
 
 function App() {
