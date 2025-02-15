@@ -1,11 +1,30 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import styles from './Recipe.module.scss';
+import { ApiContext } from '../../../../context/ApiContext';
 
-function Recipe({ title, image }) {
-    const [liked, setLiked]= useState(false);
-
-    function handleClick () {
-        setLiked(!liked);
+//double deconstruction
+function Recipe({ recipe: { _id, liked, title, image }, toggleLikedRecipe }) {
+    //Context use for API URL recup
+    const BASE_URL_API = useContext(ApiContext);
+    //Async because Server request
+    async function handleClick () {
+        try {
+            const response = await fetch (`${ BASE_URL_API }/${ _id }`, {
+                method:'PATCH',
+                header :{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stirngify({
+                    liked: !liked
+                })
+            });
+            if (response.ok) {
+                const updatedRecipe =  await response.json();
+                toggleLikedRecipe(updatedRecipe);
+            }
+        }catch(e){
+            console.log('ERREUR lors de la récupération des likes');
+        }
     }
 
     return (
