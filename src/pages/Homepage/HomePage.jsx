@@ -9,7 +9,8 @@ import Loading from '../../components/Loading/Loading';
 export function HomePage () {
     const [recipes, setRecipes] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [filter, setFitler]= useState('');
+    const [filter, setFitler] = useState('');
+    const [page, setPage] = useState(1);
 
 
     //Context use for API
@@ -20,12 +21,15 @@ export function HomePage () {
         async function fetchRecipes () { //fetch is a GET by default
             try {
                 setIsLoading(true)
-                const response = await fetch (BASE_URL_API);
+                const response = await fetch (`${BASE_URL_API}?skip=${ (page - 1) * 18 }&limit=18`); //Dyma Restapi settings ; (page -1 first page = 1 - 1 = 0)
                 if (response.ok && !cancel) {
-                    const recipes = await response.json();
+                    const newRecipes = await response.json();
                     // Is an array  ?
-                    setRecipes (Array.isArray(recipes) ? recipes : [recipes]);
-                    console.log(recipes);
+                    setRecipes ( (x) =>
+                        Array.isArray(recipes) 
+                    ? [...x, ...newRecipes] 
+                    : [...x, newRecipes]
+                    );
                 }
             } catch (e) {
                 console.log('ERREUR');
@@ -38,7 +42,7 @@ export function HomePage () {
         }
         fetchRecipes();
         return () => (cancel = true);
-    }, []);
+    }, [BASE_URL_API, page]);
 
     //Update recipe like state
     function updateRecipe (updatedRecipe) {
@@ -52,7 +56,10 @@ export function HomePage () {
 
     return(
         <div className='flex-fill container d-flex flex-column'>
-            <h1 className='my-30'>Découvrez nos nouvelles recettes</h1>
+            <h1 className='my-30'>
+                Découvrez nos nouvelles recettes {' '}
+                <small className={styles.small}>- {recipes.length}</small>
+                </h1>
             <div className={`d-flex flex-column flex-fill card p-20 mb-20 ${styles.contentCard} br`}>
                 <div className={`d-flex flex-row justify-content-center align-items-center my-30 ${styles.searchBar} `}>
                     <i className='fa-solid fa-magnifying-glass mr-15'></i>
@@ -71,10 +78,19 @@ export function HomePage () {
                     { recipes
                     .filter( (r) => r.title.toLowerCase().startsWith(filter))
                     .map ( (r) => (
-                        <Recipe key={r._id} recipe={r} toggleLikedRecipe= { updateRecipe } />
+                        <Recipe
+                            key={r._id}
+                            recipe={r}
+                            toggleLikedRecipe= { updateRecipe }
+                        />
                     ))}
                 </div>
                 )}
+                <div className=' d-flex flex-row all-center p-20'>
+                    <button onClick={ () => setPage(page + 1) } className='btn btn-primary'>
+                        Charger plus de recettes
+                    </button>
+                </div>
             </div>
         </div>
     )

@@ -2,9 +2,10 @@ import { useContext } from 'react';
 import styles from './Recipe.module.scss';
 import { ApiContext } from '../../../../context/ApiContext';
 
-//double deconstruction
+//Infos://Rest api services to test front-end. need underscor "_id" (mongoDB)
+                    //double deconstruction
 function Recipe({ recipe: { _id, liked, title, image }, toggleLikedRecipe }) {
-    //Context use for API URL recup
+    //Context used for API URL recup
     const BASE_URL_API = useContext(ApiContext);
     //Async because Server request
     async function handleClick () {
