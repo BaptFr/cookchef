@@ -26,8 +26,8 @@ export function HomePage () {
                     const newRecipes = await response.json();
                     // Is an array  ?
                     setRecipes ( (x) =>
-                        Array.isArray(recipes) 
-                    ? [...x, ...newRecipes] 
+                        Array.isArray(recipes)
+                    ? [...x, ...newRecipes]
                     : [...x, newRecipes]
                     );
                 }
