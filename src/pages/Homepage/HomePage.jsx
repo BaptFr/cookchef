@@ -1,49 +1,19 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState,  useContext } from 'react';
 import { ApiContext } from '../../context/ApiContext';
 import styles from './Homepage.module.scss';
 import Recipe from './components/Recipe/Recipe';
 import Loading from '../../components/Loading/Loading';
 import Search from './components/Search/Search';
+import { useFetchData } from '../../hooks/useFetchData';
 
 
 
 export function HomePage () {
-    const [recipes, setRecipes] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
     const [filter, setFilter] = useState('');
     const [page, setPage] = useState(1);
     //Context use for API
     const BASE_URL_API = useContext(ApiContext);
-
-
-    //Api request
-    useEffect ( () => {
-        let cancel = false; //For infos verification
-        async function fetchRecipes () { //fetch is a GET by default
-            try {
-                setIsLoading(true)
-                const response = await fetch (`${BASE_URL_API}?skip=${ (page - 1) * 18 }&limit=18`); //Dyma Restapi settings ; (page -1 first page = 1 - 1 = 0)
-                if (response.ok && !cancel) {
-                    const newRecipes = await response.json();
-                    // Is an array  ?
-                    setRecipes ( (x) =>
-                        Array.isArray(recipes)
-                    ? [...x, ...newRecipes]
-                    : [...x, newRecipes]
-                    );
-                }
-            } catch (e) {
-                console.log('ERREUR');
-            } finally {
-                //Stop the loading when datas are loaded.
-                if (!cancel) {
-                    setIsLoading(false)
-                }
-            }
-        }
-        fetchRecipes();
-        return () => (cancel = true);
-    }, [BASE_URL_API, page]);
+    const [[recipes, setRecipes], isLoading] = useFetchData(BASE_URL_API, page);
 
     //Update recipe like state
     function updateRecipe (updatedRecipe) {
