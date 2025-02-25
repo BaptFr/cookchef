@@ -3,18 +3,19 @@ import { ApiContext } from '../../context/ApiContext';
 import styles from './Homepage.module.scss';
 import Recipe from './components/Recipe/Recipe';
 import Loading from '../../components/Loading/Loading';
+import Search from './components/Search/Search';
 
 
 
 export function HomePage () {
     const [recipes, setRecipes] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [filter, setFitler] = useState('');
+    const [filter, setFilter] = useState('');
     const [page, setPage] = useState(1);
-
-
     //Context use for API
     const BASE_URL_API = useContext(ApiContext);
+
+
     //Api request
     useEffect ( () => {
         let cancel = false; //For infos verification
@@ -49,11 +50,6 @@ export function HomePage () {
         setRecipes(recipes.map( r =>r._id === updatedRecipe._id ? updateRecipe : r))
     }
 
-    function handleInput (e) {
-        const filter = e.target.value;
-        setFitler(filter.trim().toLowerCase());
-    }
-
     return(
         <div className='flex-fill container d-flex flex-column'>
             <h1 className='my-30'>
@@ -61,15 +57,7 @@ export function HomePage () {
                 <small className={styles.small}>- {recipes.length}</small>
                 </h1>
             <div className={`d-flex flex-column flex-fill card p-20 mb-20 ${styles.contentCard} br`}>
-                <div className={`d-flex flex-row justify-content-center align-items-center my-30 ${styles.searchBar} `}>
-                    <i className='fa-solid fa-magnifying-glass mr-15'></i>
-                    <input
-                        className='flex-fill'
-                        type='text'
-                        placeholder='Rechercher'
-                        onInput={ handleInput }
-                    />
-                </div>
+                <Search  setFilter={ setFilter } />
                 {/* Filter by the input value and map the result */}
                 { isLoading ? (
                    <Loading />

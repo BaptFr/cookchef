@@ -34,7 +34,7 @@ function Recipe({ recipe: { _id, liked, title, image }, toggleLikedRecipe }) {
                 <img src={ image } alt='recipe' />
             </div>
             <div className= {`${styles.recipeTitle} d-flex flex-column justify-content-center align-items-center`}>
-                <h3>{ title }</h3> <bh/>
+                <h3>{ title }</h3> 
                 <i className={ `fa-solid fa-heart ${liked ? "text-primary" : "" }`}></i>
             </div>
         </div>
