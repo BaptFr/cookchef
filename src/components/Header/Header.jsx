@@ -15,7 +15,7 @@ function Header ({ setPage }) {
             <ul className={styles.headerList}>
                 <button onClick={() => setPage("admin")} className='btn btn-primary mr-15'>Ajouter une recette</button>
                 <button className='mr-5 btn btn-reverse-primary mr-15'>
-                    <i class="fa-solid fa-heart mr-5" />
+                    <i className="fa-solid fa-heart mr-5" />
                     <span className=' primary-color'>Wishlist</span>
                 </button>
                 <button className='mr-5 btn btn-primary'>connection</button>
