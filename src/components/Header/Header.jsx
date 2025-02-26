@@ -3,16 +3,17 @@ import styles from './Header.module.scss';
 import { useState } from 'react';
 import HeaderMenu from './components/HeaderMenu/HeaderMenu';
 
-function Header () {
+function Header ({ setPage }) {
     const [showMenu, setShowMenu] = useState(false);
 
     return (
         <header className={`${styles.header} d-flex flex-row align-items-center`}>
-                <div className='flex-fill align-items-center'>
-                    <i className= "fa-solid fa-utensils mr-10 " style={{color: "#ff6348",}}></i>
+                <div onClick={() => setPage("homepage")} className='flex-fill align-items-center cursor-pointer'>
+                    <i  className= "fa-solid fa-utensils mr-10 " style={{color: '#ff6348',}} alt='cook-chef'></i>
                     COOK CHEF
                 </div>
             <ul className={styles.headerList}>
+                <button onClick={() => setPage("admin")} className='btn btn-primary'>Ajouter une recette </button>
                 <button className='mr-5 btn btn-reverse-primary'>
                     <i className='fa-solid fa-basket-shopping mr-10'></i>
                     <span className=' primary-color'>Wishlist</span>
