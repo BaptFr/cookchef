@@ -1,7 +1,21 @@
 .recipe {
+    position: relative;
     border-radius: 20px;
     height: 400px;
     cursor: pointer;
+    > i {
+        position: absolute;
+        z-index :1; //To freeze the cross when picture's hover scale up.
+        top: 10px;
+        right: 20px;
+        font-size: 25px;
+        color: #ffffff;
+        cursor: pointer;
+        transition: color 0.2s;
+        &:hover{
+            color: var(--red-1);
+        }
+    }
     &:hover{
         img{
             transform: scale(1.1);

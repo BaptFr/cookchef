@@ -8,20 +8,21 @@ export function useFetchData (url, page) {
 
 
     useEffect ( () => {
-        let cancel = false; //For infos verification
+        //For infos verification
+        let cancel = false;
         async function fetchData () { //fetch is a GET by default
             try {
                 setIsLoading(true);
                 const queryParam = new URLSearchParams();
                 if(page){
-                    queryParam.append('limit', 18);
-                    queryParam.append('skip', (page - 1) * 18);
+                    // queryParam.append('limit', 18);
+                    // queryParam.append('skip', (page -1) * 18);
                 }
-                const response = await fetch (url +  `${queryParam}`); //Dyma Restapi settings;(page -1 first page = 1 - 1 = 0)
+                const response = await fetch (url + `${queryParam}`); //Dyma Restapi settings;(page -1 first page = 1 - 1 = 0)
                 if (response.ok && !cancel) {
                     const newData = await response.json();
                     // Is an array  ?
-                    setData ( (x) =>
+                    setData ((x) =>
                         Array.isArray(newData) ? [...x, ...newData] : [...x, newData]
                     );
                 }

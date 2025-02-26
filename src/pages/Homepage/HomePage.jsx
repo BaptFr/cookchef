@@ -17,9 +17,13 @@ export function HomePage () {
 
     //Update recipe like state
     function updateRecipe (updatedRecipe) {
-        setRecipes(recipes.map( r =>r._id === updatedRecipe._id ? updateRecipe : r))
+        setRecipes(recipes.map( (r) => (r._id === updatedRecipe._id ? updateRecipe : r))
+        );
     }
-
+    //Delete recipe
+    function deleteRecipe (_id) {
+        setRecipes(recipes.filter( (r) => r._id !== _id));
+    }
     return(
         <div className='flex-fill container d-flex flex-column'>
             <h1 className='my-30'>
@@ -29,7 +33,7 @@ export function HomePage () {
             <div className={`d-flex flex-column flex-fill card p-20 mb-20 ${styles.contentCard} br`}>
                 <Search  setFilter={ setFilter } />
                 {/* Filter by the input value and map the result */}
-                { isLoading ? (
+                {isLoading && !recipes.length ? (
                    <Loading />
                 ) : (
                     <div className={styles.grid}>
@@ -40,6 +44,7 @@ export function HomePage () {
                             key={r._id}
                             recipe={r}
                             toggleLikedRecipe= { updateRecipe }
+                            deleteRecipe = { deleteRecipe }
                         />
                     ))}
                 </div>
