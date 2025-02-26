@@ -31,3 +31,23 @@
 .text-primary{
     color: var(--primary);
 }
+
+label {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+    outline:0;
+}
+
+input {
+    padding: 10px 15px;
+    border:  1px solid var(--grey-2);
+    border-radius: 20px;
+}
+
+.form-error {
+    margin: 0;
+    color: var(--red-1);
+    font-weight: 500;
+    font-size: 12px;
+}
