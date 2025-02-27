@@ -2,9 +2,13 @@ import styles from './RecipeForm.module.scss';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
  import { yupResolver } from '@hookform/resolvers/yup';
+import { useContext } from 'react';
+import { ApiContext } from '../../../../context/ApiContext';
 
 
 function RecipeForm () {
+
+    const BASE_URL = useContext(ApiContext);
     const defaultValues = {
         title: '',
         image: ''
@@ -28,6 +32,7 @@ function RecipeForm () {
         register,
         handleSubmit,
         reset,
+        setError,
         clearErrors,
     } = useForm ( {
         defaultValues,
@@ -35,7 +40,25 @@ function RecipeForm () {
     });
 
     async function submit (values) {
-        console.log(values);
+        try {
+            clearErrors();
+            const response = await fetch(BASE_URL, {
+                method: 'POST',
+                headers :{
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(values),
+            });
+           if (response.ok) {
+            reset(defaultValues);
+           }else{
+            setError('generic', {
+                type: 'generic',
+                message :'Il y a eu une erreur.'});
+           }
+        } catch (e) {
+            setError('generic', { type: 'generic', message :'Il y a eu une erreur.'});
+        }
     }
 
 
@@ -47,7 +70,7 @@ function RecipeForm () {
             <div className='d-flex flex-column mb-20'>
                 <label>Titre de la recette</label>
                 <input {...register('title') } type="text" /> {/*Required recup*/}
-                {errors.title && <p className='form-error'>{ errors.title.message}</p> }  {/*title erro message*/}
+                {errors.title && <p className='form-error'>{ errors.title.message}</p> }  {/*title error message*/}
             </div>
             <div className='d-flex flex-column mb-20'>
                 <label>URL de l'image pour la recette</label>

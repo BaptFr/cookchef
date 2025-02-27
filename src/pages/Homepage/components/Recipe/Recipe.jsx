@@ -19,7 +19,7 @@ function Recipe({
                 header :{
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stirngify({
+                body: JSON.stringify({
                     liked: !liked
                 })
             });

@@ -14,11 +14,12 @@ export function useFetchData (url, page) {
             try {
                 setIsLoading(true);
                 const queryParam = new URLSearchParams();
-                if(page){
-                    // queryParam.append('limit', 18);
-                    // queryParam.append('skip', (page -1) * 18);
+                if(page){  //Params on restapi.fr
+                    queryParam.append('limit', 18); //Results limit per pages
+                    queryParam.append('skip', (page -1) * 18);
+                    queryParam.append('sort', 'createdAt:-1'); //Sort recipes to show the last added
                 }
-                const response = await fetch (url + `${queryParam}`); //Dyma Restapi settings;(page -1 first page = 1 - 1 = 0)
+                const response = await fetch(url + `?${queryParam}`); //Dyma Restapi settings;(page -1 first page = 1 - 1 = 0)
                 if (response.ok && !cancel) {
                     const newData = await response.json();
                     // Is an array  ?
