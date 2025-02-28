@@ -1,13 +1,15 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App.jsx';
-import  './assets/styles/index.scss';
 import { ApiContext } from './context/ApiContext.jsx';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './router.js';
+import  './assets/styles/index.scss';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ApiContext.Provider value="https://restapi.fr/api/recipesdatas">
-    <App />
-    </ApiContext.Provider>
+    <RouterProvider router { router }>
+      <ApiContext.Provider value="https://restapi.fr/api/recipesdatas">
+      </ApiContext.Provider>
+    </RouterProvider>
   </StrictMode>,
 )

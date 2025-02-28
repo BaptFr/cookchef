@@ -9,6 +9,7 @@ import { ApiContext } from '../../../../context/ApiContext';
 function RecipeForm () {
 
     const BASE_URL = useContext(ApiContext);
+    //Default values used to reset the form
     const defaultValues = {
         title: '',
         image: ''
@@ -27,6 +28,7 @@ function RecipeForm () {
             .url('L\'image doit être un lien valide'),
     });
 
+    //Is submitting to disabled the form in the submitting <button>
     const  {
         formState: { errors, isSubmitting},
         register,
@@ -41,6 +43,7 @@ function RecipeForm () {
 
     async function submit (values) {
         try {
+            //To reset errors
             clearErrors();
             const response = await fetch(BASE_URL, {
                 method: 'POST',
