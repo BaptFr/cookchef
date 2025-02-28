@@ -2,18 +2,23 @@
 import styles from './Header.module.scss';
 import { useState } from 'react';
 import HeaderMenu from './components/HeaderMenu/HeaderMenu';
+import { NavLink } from 'react-router-dom';
 
 function Header ({ setPage }) {
     const [showMenu, setShowMenu] = useState(false);
 
     return (
         <header className={`${styles.header} d-flex flex-row align-items-center`}>
-            <div onClick={() => setPage("homepage")} className='flex-fill align-items-center cursor-pointer'>
-                <i  className= "fa-solid fa-utensils mr-10 " style={{color: '#ff6348',}} alt='cook-chef'></i>
-                COOK CHEF
+            <div className='flex-fill align-items-center cursor-pointer'>
+                <NavLink to='/' style={{color: '#ff6348',}}>
+                    <i  className= "fa-solid fa-utensils mr-10 " style={{color: '#ff6348',}} alt='cook-chef'></i>
+                    COOK CHEF
+                </NavLink>
             </div>
             <ul className={styles.headerList}>
-                <button onClick={() => setPage("admin")} className='btn btn-primary mr-15'>Ajouter une recette</button>
+                <NavLink to='/admin'>
+                    <button className='btn btn-primary mr-15'>Ajouter une recette</button>
+                </NavLink>
                 <button className='mr-5 btn btn-reverse-primary mr-15'>
                     <i className="fa-solid fa-heart mr-5" />
                     <span className=' primary-color'>Wishlist</span>

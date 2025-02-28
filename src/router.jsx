@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import { lazy } from 'react';
 import App from "./App";
 
 const HomePage = lazy (() => import('./pages/Homepage/HomePage'));
@@ -14,7 +15,7 @@ export const router = createBrowserRouter ([
                 element: <HomePage />,
             },
             {
-                path: Admin,
+                path: 'admin',
                 element: <Admin />,
             },
         ],

@@ -7,7 +7,6 @@ import Search from './components/Search/Search';
 import { useFetchData } from '../../hooks/useFetchData';
 
 
-
 export function HomePage () {
     const [filter, setFilter] = useState('');
     const [page, setPage] = useState(1);
