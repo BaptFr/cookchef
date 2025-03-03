@@ -14,14 +14,39 @@ export function HomePage () {
     const BASE_URL_API = useContext(ApiContext);
     const [[recipes, setRecipes], isLoading] = useFetchData(BASE_URL_API, page);
 
-    //Update recipe like state
-    function updateRecipe (updatedRecipe) {
-        setRecipes(recipes.map( (r) => (r._id === updatedRecipe._id ? updateRecipe : r))
-        );
+    //Update recipe like function
+    async function updateRecipe (updatedRecipe) {
+        try {
+            //Id generate by API restapi.fr; no id in the data
+            const{_id, ...restRecipe} = updatedRecipe
+            const response = await fetch (`${ BASE_URL_API }/${_id }`, {
+                method:'PATCH',
+                header :{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(restRecipe),
+            });
+            if (response.ok) {
+                const updatedRecipe =  await response.json();
+                setRecipes(recipes.map( (r) => (r._id === updatedRecipe._id ? updatedRecipe : r))
+            );
+
+            }
+        }catch(e){
+            console.log('ERREUR lors de la récupération des recettes aimées');
+        }
     }
     //Delete recipe
-    function deleteRecipe (_id) {
-        setRecipes(recipes.filter( (r) => r._id !== _id));
+    async function deleteRecipe (_id) {
+        try {
+            const response = await fetch (`${BASE_URL_API}/${_id} `,
+                { method: 'DELETE', });
+            if (response.ok) {
+                setRecipes(recipes.filter( (r) => r._id !== _id));
+            };
+        } catch (e) {
+            console.log ('Erreur');
+        }
     }
     return(
         <div className='flex-fill container d-flex flex-column'>
@@ -42,7 +67,7 @@ export function HomePage () {
                         <Recipe
                             key={r._id}
                             recipe={r}
-                            toggleLikedRecipe= { updateRecipe }
+                            updateRecipe= { updateRecipe }
                             deleteRecipe = { deleteRecipe }
                         />
                     ))}
