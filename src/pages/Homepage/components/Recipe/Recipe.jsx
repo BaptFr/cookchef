@@ -7,18 +7,16 @@ function Recipe({
         updateRecipe,
         deleteRecipe
     }) {
-
     function handleClickLike () {
         updateRecipe({
             ...recipe,
             liked: !recipe.liked,
         });
     }
-
-  function handleClickDelete (e) {
-        e.stopPropagation();
-        deleteRecipe(recipe._id);
-    }
+    function handleClickDelete (e) {
+            e.stopPropagation();
+            deleteRecipe(recipe._id);
+        }
 
     return (
         <div onClick={handleClickLike} className={styles.recipe}>

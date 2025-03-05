@@ -22,7 +22,10 @@ export function useFetchRecipes (page) {
                 }
                 //import from api folder
                 const fetchedRecipes = await getRecipes(queryParam);
-                setRecipes(fetchedRecipes);
+                //
+                if(!cancel){
+                setRecipes((x) => [...x, ...fetchedRecipes]);
+                }
             } catch (e) {
                 setError('erreur')
             } finally {
