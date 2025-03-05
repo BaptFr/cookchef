@@ -4,7 +4,7 @@ import styles from './Homepage.module.scss';
 import Recipe from './components/Recipe/Recipe';
 import Loading from '../../components/Loading/Loading';
 import Search from './components/Search/Search';
-import { useFetchData } from '../../hooks/useFetchData';
+import { useFetchRecipes } from '../../hooks';
 
 
 export function HomePage () {
@@ -12,7 +12,7 @@ export function HomePage () {
     const [page, setPage] = useState(1);
     //Context use for API
     const BASE_URL_API = useContext(ApiContext);
-    const [[recipes, setRecipes], isLoading] = useFetchData(BASE_URL_API, page);
+    const [[recipes, setRecipes], isLoading] = useFetchRecipes( page);
 
     //Update recipe like function
     async function updateRecipe (updatedRecipe) {

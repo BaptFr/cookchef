@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import { getRecipes } from '../apis';
 
 
-export function useFetchData (url, page) {
-    const [data, setData] = useState([]);
+export function useFetchRecipes (page) {
+    const [recipes, setRecipes] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState([]);
 
@@ -10,7 +11,7 @@ export function useFetchData (url, page) {
     useEffect ( () => {
         //For infos verification
         let cancel = false;
-        async function fetchData () { //fetch is a GET by default
+        async function fetchRecipes () { //fetch is a GET by default
             try {
                 setIsLoading(true);
                 const queryParam = new URLSearchParams();
@@ -19,14 +20,9 @@ export function useFetchData (url, page) {
                     queryParam.append('skip', (page -1) * 18);
                     queryParam.append('sort', 'createdAt:-1'); //Sort recipes to show the last added
                 }
-                const response = await fetch(url + `?${queryParam}`); //Dyma Restapi settings;(page -1 first page = 1 - 1 = 0)
-                if (response.ok && !cancel) {
-                    const newData = await response.json();
-                    // Is an array  ?
-                    setData ((x) =>
-                        Array.isArray(newData) ? [...x, ...newData] : [...x, newData]
-                    );
-                }
+                //import from api folder
+                const fetchedRecipes = await getRecipes(queryParam);
+                setRecipes(fetchedRecipes);
             } catch (e) {
                 setError('erreur')
             } finally {
@@ -36,10 +32,10 @@ export function useFetchData (url, page) {
                 }
             }
         }
-        fetchData();
+        fetchRecipes();
         return () => (cancel = true);
-    }, [url, page]);
+    }, [page]);
 
-    return [[data, setData], isLoading, error]
+    return [[recipes, setRecipes], isLoading, error]
 
 }

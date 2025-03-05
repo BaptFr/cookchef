@@ -5,6 +5,7 @@ import  Footer from "./components/Footer/Footer";
 import styles from './App.module.scss';
 import { Outlet } from "react-router-dom";
 
+//(10 hrs memory restapi.fr. Need to manually seed 1 time for dev.)
 //seedRecipes();
 
 function App() {
