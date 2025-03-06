@@ -17,7 +17,7 @@ function Header ({ setPage }) {
             </div>
             <ul className={styles.headerList}>
                 <NavLink to='/admin'>
-                    <button className='btn btn-primary mr-15'>Ajouter une recette</button>
+                    <button className='btn btn-primary mr-15'>Admin</button>
                 </NavLink>
                 <button className='mr-5 btn btn-reverse-primary mr-15'>
                     <i className="fa-solid fa-heart mr-5" />
