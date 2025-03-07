@@ -1,8 +1,14 @@
 import { useFetchRecipes } from "../../../../../../hooks";
+import { deleteRecipe as deleteR } from "../../../../../../apis";
 import styles from './AdminRecipesList.module.scss';
 
 function AdminRecipesList () {
-    const [[recipes]] = useFetchRecipes();
+
+    const [[recipes, setRecipes]] = useFetchRecipes();
+    async function deleteRecipe(_id) {
+        await deleteR(_id);
+        setRecipes(recipes.filter( (r) => r._id !== _id));
+    };
 
     return (// If recipes , map recipes names
         <ul className={ styles.list}>
@@ -11,7 +17,11 @@ function AdminRecipesList () {
                 <li key={r._id} className='d-flex align-items-center'>
                     <span className="flex-fill">{r.title}</span>
                     <button className='btn btn-primary mr-15'>Editer</button>
-                    <button className='btn btn-danger'>Supprimer</button>
+                    <button className='btn btn-danger'
+                    onClick={ () => deleteRecipe(r._id)}
+                    >
+                    Supprimer
+                    </button>
                 </li>
             ))
             :  'Erreur récupération noms des recettes' }

@@ -25,7 +25,7 @@ function Recipe({
                 <img src={recipe.image} alt={recipe.title} />
             </div>
             <div className= {`${styles.recipeTitle} d-flex flex-column justify-content-center align-items-center`}>
-                <h3>{ recipe.title }</h3>
+                <h3>{recipe.title }</h3>
                 <i className={ `fa-solid fa-heart ${recipe.liked ? "text-primary" : "" }`}></i>
             </div>
         </div>

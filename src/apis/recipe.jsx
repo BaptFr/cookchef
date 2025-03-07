@@ -25,7 +25,7 @@ export async function deleteRecipe(_id) {
          method: 'DELETE',
         });
     if (response.ok) {
-        return_id;
+        return _id;
     } else {
         throw new Error ('Error to delete the recipe');
     }
