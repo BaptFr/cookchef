@@ -2,13 +2,11 @@ import styles from './AdminRecipesForm.module.scss';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
  import { yupResolver } from '@hookform/resolvers/yup';
-import { useContext } from 'react';
-import { ApiContext} from '../../../../../../context/ApiContext';
-
+import { createRecipe } from '../../../../../../apis';
 
 function AdminRecipesForm () {
 
-    const BASE_URL = useContext(ApiContext);
+
     //Default values used to reset the form
     const defaultValues = {
         title: '',
@@ -24,7 +22,7 @@ function AdminRecipesForm () {
             .max(30, 'Le titre doit être succinct'),
         image: yup
             .string()
-            .required('euillez indiquer un lien valide')
+            .required('Veuillez indiquer un lien valide')
             .url('L\'image doit être un lien valide'),
     });
 
@@ -43,22 +41,9 @@ function AdminRecipesForm () {
 
     async function submit (values) {
         try {
-            //To reset errors
-            clearErrors();
-            const response = await fetch(BASE_URL, {
-                method: 'POST',
-                headers :{
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(values),
-            });
-           if (response.ok) {
+            clearErrors();   //To reset errors
+            await createRecipe(values);
             reset(defaultValues);
-           }else{
-            setError('generic', {
-                type: 'generic',
-                message :'Il y a eu une erreur.'});
-           }
         } catch (e) {
             setError('generic', { type: 'generic', message :'Il y a eu une erreur.'});
         }

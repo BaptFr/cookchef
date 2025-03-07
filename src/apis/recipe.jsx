@@ -53,8 +53,8 @@ export async function updateRecipe(updatedRecipe) {
 //CREATE NEW RECIPE
 export async function createRecipe(newRecipe) {
     const response = await fetch (RECIPE_API, {
-        method:'PUT',
-        header :{
+        method: 'PUT',
+        headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(newRecipe),
