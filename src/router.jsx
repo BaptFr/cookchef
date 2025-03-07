@@ -1,6 +1,9 @@
 import { createBrowserRouter, redirect } from "react-router-dom";
 import { lazy } from 'react';
 import App from "./App";
+import { getRecipe } from "./apis";
+
+
 
 const HomePage = lazy (() => import('./pages/Homepage/HomePage'));
 const Admin = lazy (() => import('./pages/Admin/Admin'));
@@ -42,6 +45,7 @@ export const router = createBrowserRouter ([
                             },
                             {
                                 path: 'edit/:recipeId',
+                                loader: async ({ params: { recipeId } }) => getRecipe(recipeId),
                                 element: <AdminRecipesForm />,
                             },
                         ]

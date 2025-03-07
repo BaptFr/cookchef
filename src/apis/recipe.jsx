@@ -9,11 +9,11 @@ export async function getRecipes(queryParam) {
         throw new Error('Error fetch recipes');
     }
 }
-//GET Recipes
+//GET Recipe
 export async function getRecipe(_id) {
-  const respone = await fetch(`${RECIPE_API}/${_id}`);
-  if (respone.ok) {
-    return response.json();
+  const response = await fetch(`${RECIPE_API}/${_id}`);
+  if (response.ok) {
+    return (response.json());
   } else {
     throw new Error ('Error fetch one recipe');
   }

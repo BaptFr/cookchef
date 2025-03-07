@@ -2,15 +2,19 @@ import styles from './AdminRecipesForm.module.scss';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
  import { yupResolver } from '@hookform/resolvers/yup';
-import { createRecipe } from '../../../../../../apis';
+import { createRecipe, updateRecipe } from '../../../../../../apis';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 
 function AdminRecipesForm () {
-
+    //Hooks 
+    const recipe = useLoaderData();
+    const navigate = useNavigate();
 
     //Default values used to reset the form
     const defaultValues = {
-        title: '',
-        image: ''
+        //Conditions to update datas or create
+        title: recipe ? recipe.title : '',
+        image: recipe ? recipe.image : ''
     }
 
     //Yup form errors config.
@@ -41,9 +45,19 @@ function AdminRecipesForm () {
 
     async function submit (values) {
         try {
-            clearErrors();   //To reset errors
-            await createRecipe(values);
-            reset(defaultValues);
+            //To reset errors
+            clearErrors();
+            //Condition: if there is already a recipe no creation no duplication for an update.
+            if (recipe) {
+                await updateRecipe({
+                ...values, 
+                _id: recipe._id
+                });
+                navigate('/admin/recipes/list');
+            } else {
+                await createRecipe(values);
+                reset(defaultValues);
+            }
         } catch (e) {
             setError('generic', { type: 'generic', message :'Il y a eu une erreur.'});
         }
