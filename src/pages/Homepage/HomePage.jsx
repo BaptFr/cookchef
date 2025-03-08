@@ -1,10 +1,10 @@
 import { useState,  useContext } from 'react';
 import styles from './Homepage.module.scss';
 import Recipe from './components/Recipe/Recipe';
-import Loading from '../../components/Loading/Loading';
+import Loading from 'src/components/Loading/Loading';
 import Search from './components/Search/Search';
-import { useFetchRecipes } from '../../hooks';
-import { updateRecipe as updateR, deleteRecipe as deleteR } from '../../apis';
+import { useFetchRecipes } from 'src/hooks';
+import { updateRecipe as updateR, deleteRecipe as deleteR } from 'src/apis';
 
 
 export function HomePage () {

@@ -1,5 +1,5 @@
-import { useFetchRecipes } from "../../../../../../hooks";
-import { deleteRecipe as deleteR } from "../../../../../../apis";
+import { useFetchRecipes } from "src/hooks";
+import { deleteRecipe as deleteR } from "src/apis";
 import styles from './AdminRecipesList.module.scss';
 import { NavLink } from "react-router-dom";
 

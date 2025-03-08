@@ -2,7 +2,7 @@ import styles from './AdminRecipesForm.module.scss';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
  import { yupResolver } from '@hookform/resolvers/yup';
-import { createRecipe, updateRecipe } from '../../../../../../apis';
+import { createRecipe, updateRecipe } from 'src/apis';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 
 function AdminRecipesForm () {
