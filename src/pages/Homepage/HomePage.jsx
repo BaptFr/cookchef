@@ -1,17 +1,21 @@
-import { useState,  useContext } from 'react';
+import { useState } from 'react';
 import styles from './Homepage.module.scss';
 import Recipe from './components/Recipe/Recipe';
 import Loading from 'src/components/Loading/Loading';
 import Search from './components/Search/Search';
 import { useFetchRecipes } from 'src/hooks';
 import { updateRecipe as updateR, deleteRecipe as deleteR } from 'src/apis';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { recipesState, selectFilteredRecipes } from 'src/state';
 
 
 export function HomePage () {
     const [filter, setFilter] = useState('');
     const [page, setPage] = useState(1);
     //Context use for API
-    const [[recipes, setRecipes], isLoading] = useFetchRecipes(page); //Personalized Hook with params (to not reload pages).
+    const [isLoading]  = useFetchRecipes(page); //Personalized Hook with params (to not reload pages).
+    const recipes = useRecoilValue(selectFilteredRecipes(filter));
+    const setRecipes = useSetRecoilState(recipesState);
 
     //Update recipe like function
     async function updateRecipe(updatedRecipe) {
@@ -22,7 +26,7 @@ export function HomePage () {
     }
 
     //Delete recipe
-    async function deleteRecipe (_id) {
+    async function deleteRecipe(_id) {
         await deleteR(_id);
         setRecipes(recipes.filter( (r) => r._id !== _id));
     }
