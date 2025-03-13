@@ -2,7 +2,7 @@
 import styles from './Header.module.scss';
 import { useState } from 'react';
 import HeaderMenu from './components/HeaderMenu/HeaderMenu';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { wishlistDisplayState } from 'src/state';
 
@@ -11,6 +11,7 @@ function Header ({ setPage }) {
     const [showMenu, setShowMenu] = useState(false);
     //Wishlist show state
     const setWishlistDisplay = useSetRecoilState(wishlistDisplayState);
+    const location = useLocation();
 
     return (
         <header className={`${styles.header} d-flex flex-row align-items-center`}>
@@ -24,11 +25,14 @@ function Header ({ setPage }) {
                 <NavLink to='/admin'>
                     <button className='btn btn-primary mr-15'>Admin</button>
                 </NavLink>
-                <button className='mr-5 btn btn-reverse-primary mr-15' onClick={() =>  setWishlistDisplay (true)}>
+                 {/* If in the panel Admin no wishlist nutton avalaible. Using location. */}
+                { !location.pathname.includes('admin') && (
+                    <button className='mr-5 btn btn-reverse-primary mr-15' onClick={() =>  setWishlistDisplay (true)}>
                     <i className="fa-solid fa-heart mr-5" />
                     <span className=' primary-color'>Wishlist</span>
                 </button>
-                <button className='mr-5 btn btn-primary'>connection</button>
+                )}
+                {/* Next fonctionnality ?  <button className='mr-5 btn btn-primary'>connection</button> */}
             </ul>
             <i
                 onClick={() => setShowMenu(true)}
@@ -37,7 +41,7 @@ function Header ({ setPage }) {
             {showMenu &&
                 <>
                 <div onClick={() => setShowMenu(false)} className='calc'></div>
-                <HeaderMenu />
+                <HeaderMenu  setWishlistDisplay= { setWishlistDisplay} />
                 </>
             }
         </header>
