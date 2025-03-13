@@ -6,8 +6,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { wishlistDisplayState } from 'src/state';
 
-
-function Header ({ setPage }) {
+function Header () {
     const [showMenu, setShowMenu] = useState(false);
     //Wishlist show state
     const setWishlistDisplay = useSetRecoilState(wishlistDisplayState);
@@ -27,7 +26,9 @@ function Header ({ setPage }) {
                 </NavLink>
                  {/* If in the panel Admin no wishlist nutton avalaible. Using location. */}
                 { !location.pathname.includes('admin') && (
-                    <button className='mr-5 btn btn-reverse-primary mr-15' onClick={() =>  setWishlistDisplay (true)}>
+                    <button
+                    className='mr-5 btn btn-reverse-primary mr-15'
+                    onClick={() =>  setWishlistDisplay (true)}>
                     <i className="fa-solid fa-heart mr-5" />
                     <span className=' primary-color'>Wishlist</span>
                 </button>
@@ -41,7 +42,10 @@ function Header ({ setPage }) {
             {showMenu &&
                 <>
                 <div onClick={() => setShowMenu(false)} className='calc'></div>
-                <HeaderMenu  setWishlistDisplay= { setWishlistDisplay} />
+                <HeaderMenu
+                    displayWishlist = {  () => setWishlistDisplay(true)}
+                    hideMenu= {() => setShowMenu(false)}
+                />
                 </>
             }
         </header>

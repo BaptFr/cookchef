@@ -1,3 +1,5 @@
+@use '/src/assets/styles/mixins' as mixins;
+
 .container{
     position: fixed;
     z-index: 1;
@@ -22,6 +24,10 @@
     //owerflow if too many whished recipes
     overflow-y: auto;
     animation: appear 0.4s;
+    @include mixins.xs {
+        width: 100%;
+        margin: 0px;
+    }
 }
 
 .remove {

@@ -1,3 +1,5 @@
+@use '/src/assets/styles/mixins' as mixins;
+
 body {
     margin: 0;
     font-family: var(--font-family);
@@ -15,6 +17,12 @@ h4{
     margin: 0;
 }
 
+h1 {
+    @include mixins.xs {
+        text-align: center;
+        font-size: 15px;
+    }
+}
 *{
     box-sizing: border-box;
 }

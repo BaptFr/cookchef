@@ -1,5 +1,12 @@
+@use '/src/assets/styles/mixins' as mixins;
+
 .list {
     flex: 0 0 200px;
+    @include mixins.xs {
+        flex: 0 0 auto;
+        width: 100%;
+        margin-bottom:  20px;
+    }
     padding: 20px;
     background-color: #ffffff;
     border-radius: var(--border-radius);
