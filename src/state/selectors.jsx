@@ -1,4 +1,4 @@
-import { selectorFamily } from "recoil";
+import { selector, selectorFamily } from "recoil";
 import { recipesState } from "./atoms";
 import { getRecipe } from "src/apis";
 
@@ -18,4 +18,10 @@ export const selectFilteredRecipes = selectorFamily({
 export const selectActiveRecipe = selectorFamily ({
     key:'selectActiveRecipe',
     get: recipeId => async () => recipeId && (await getRecipe(recipeId)),
+});
+
+//To select liked recipes
+export const selectWishedRecipe = selector({
+    key:'selectWishedRecipe',
+    get: ({ get }) => get(recipesState)?.filter( r => r.liked),
 });

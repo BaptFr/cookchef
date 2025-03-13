@@ -19,4 +19,30 @@
     border-radius: 20px;
     box-shadow: var(--box-shadow);
     border: var(--border);
+    //owerflow if too many whished recipes
+    overflow-y: auto;
+    animation: appear 0.4s;
+}
+
+.remove {
+    animation: disappear 0.4s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes appear {
+    from {
+        transform : translateY( 100%);
+    }
+    to {
+        transform : translateY(0);
+    }
+}
+
+@keyframes disappear {
+    from {
+        transform : translateY(0);
+    }
+    to {
+        transform : translateY(100%);
+    }
 }
