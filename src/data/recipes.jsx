@@ -37,4 +37,29 @@ export const data =[
         image:
             "https://assets.afcdn.com/recipe/20180628/80089_w1024h1024c1cx1944cy2592cxt0cyt0cxb3888cyb5184.jpg",
     },
+    {
+        title: "Boeuf Bourguignon",
+        image:
+            "https://assets.afcdn.com/recipe/20220707/133382_w600.jpg",
+    },
+    {
+        title: "Purée de patates douces",
+        image:
+            "https://assets.afcdn.com/recipe/20180711/80654_w600.jpg",
+    },
+    {
+        title: "Quatre-quarts marbré au café",
+        image:
+            "https://assets.afcdn.com/recipe/20170202/24219_w1024h768c1cx2592cy1728.jpg",
+    },
+    {
+        title: "Filets de cabillaud sauce citron",
+        image:
+            "https://assets.afcdn.com/recipe/20170303/63807_w1024h768c1cx1632cy2464.jpg",
+    },
+    {
+        title: "Filet de chevreuil grand veneur",
+        image:
+            "https://assets.afcdn.com/recipe/20130627/30161_w1024h768c1cx1250cy1875.jpg",
+    },
 ]

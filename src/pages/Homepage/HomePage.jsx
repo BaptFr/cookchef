@@ -41,7 +41,7 @@ export function HomePage () {
                     Découvrez nos nouvelles recettes {' '}
                     <small className={styles.small}>- {recipes.length}</small>
                     </h1>
-                <div className={`d-flex flex-column flex-fill card p-20 mb-20 ${styles.contentCard} br`}>
+                <div className={`d-flex flex-column flex-fill card p-20 mb-20 ${styles.contentCard}`}>
                     <Search  setFilter={ setFilter } />
                     {/* Filter by the input value and map the result */}
                     {isLoading && !recipes.length ? (
