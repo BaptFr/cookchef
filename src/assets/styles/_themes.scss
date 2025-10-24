@@ -1,0 +1,59 @@
+.btn {
+    padding: 5px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.2s opacity;
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: #ffffff;
+    border: 1px solid var(--primary);
+}
+
+.btn-reverse-primary {
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    background-color: #ffffff
+}
+
+.btn-danger {
+    background-color: var(--red-1);
+    color: #ffffff;
+    border: 1px solid var(--red-1);
+}
+
+.cursor-pointer{
+    &:hover {cursor: pointer};
+}
+.card {
+    border-radius: 20px;
+    background-color: #ffffff;
+}
+
+.text-primary{
+    color: var(--primary);
+}
+
+label {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+    outline:0;
+}
+
+input {
+    padding: 10px 15px;
+    border:  1px solid var(--grey-2);
+    border-radius: 20px;
+}
+
+.form-error {
+    margin: 0;
+    color: var(--red-1);
+    font-weight: 500;
+    font-size: 12px;
+}

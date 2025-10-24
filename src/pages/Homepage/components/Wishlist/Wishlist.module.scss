@@ -1,0 +1,54 @@
+@use '/src/assets/styles/mixins' as mixins;
+
+.container{
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.wishlist{
+    width: 400px;
+    height: 400px;
+    margin: 0px 20px 20px 0px;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    //owerflow if too many whished recipes
+    overflow-y: auto;
+    animation: appear 0.4s;
+    @include mixins.xs {
+        width: 100%;
+        margin: 0px;
+    }
+}
+
+.remove {
+    animation: disappear 0.4s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes appear {
+    from {
+        transform : translateY( 100%);
+    }
+    to {
+        transform : translateY(0);
+    }
+}
+
+@keyframes disappear {
+    from {
+        transform : translateY(0);
+    }
+    to {
+        transform : translateY(100%);
+    }
+}

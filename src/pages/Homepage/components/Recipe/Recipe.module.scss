@@ -1,0 +1,51 @@
+.recipe {
+    position: relative;
+    border-radius: 20px;
+    height: 400px;
+    cursor: pointer;
+    > i {
+        position: absolute;
+        z-index :1; //To freeze the cross when picture's hover scale up.
+        top: 10px;
+        right: 20px;
+        font-size: 25px;
+        color: #ffffff;
+        cursor: pointer;
+        transition: color 0.2s;
+        &:hover{
+            color: var(--red-1);
+        }
+    }
+    &:hover{
+        img{
+            transform: scale(1.1);
+        }
+        .recipeTitle{
+            color: var(--primary);
+        }
+    }
+}
+
+.imageContainer {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    overflow: hidden;
+    height: 300px;
+    img{
+        width:100%;
+        height: 100%;
+        object-fit: cover;
+        transition:  0.2s transform;
+    }
+
+}
+.recipeTitle {
+    height: 100px;
+    padding: 10px;
+    margin: auto;
+    text-align: center;
+    border: 1px solid var(--grey-2);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transition: 0.2s color;
+}

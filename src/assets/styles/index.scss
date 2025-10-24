@@ -1,9 +1,6 @@
-:root {
-  font-family: "Montserrat", sans-serif;
-  font-style: normal;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
+@use './variables';
+@use './themes';
+@use './base';
+@use './flex';
+@use './utils';
+@use './debug';

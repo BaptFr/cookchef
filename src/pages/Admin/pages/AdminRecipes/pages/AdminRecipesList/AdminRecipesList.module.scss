@@ -1,0 +1,26 @@
+@use '/src/assets/styles/mixins' as mixins;
+
+.list {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    border: var(--border);
+    flex: 1 1 auto;
+}
+
+.li {
+    text-decoration: bold;
+    padding: 5px 0px;
+    border-bottom: var(--border);
+    @include mixins.xs {
+        text-align: center;
+        font-weight: 650;
+        a {
+            width: 100%;
+        }
+        flex-direction: column;
+        button, span{ 
+            width: 100%;
+            margin-bottom: 10px;};
+    }
+}
